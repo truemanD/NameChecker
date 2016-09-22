@@ -7,6 +7,7 @@ package namechecker;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 /**
  *
@@ -17,11 +18,11 @@ class NameCheck {
     /**
      * @param args the command line arguments
      */
-    static boolean nameChecker(String str1, String str2, int minDistance) {
-        System.out.println(str1 + " : " + str2);
+    static boolean lexemeCompare(String str1, String str2, int minDistance) {
+//        System.out.println(str1 + " : " + str2);
         str1 = str1.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
         str2 = str2.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
-        System.out.println(str1 + " : " + str2);
+//        System.out.println(str1 + " : " + str2);
         if (str1 == null || str2 == null) {
             return false;
         }
@@ -40,32 +41,64 @@ class NameCheck {
         return levinsteinListChecker(a, Arrays.asList(b.split(" ")), minDistance);
     }
 
-    static boolean digitChecker(String str1, String str2) {
-        System.out.println(str1 + " : " + str2);
-
+    static int lexemeCompare(String str1, String str2) throws DataFormatException {
+//        System.out.println(str1 + " : " + str2);
+        str1 = str1.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
+        str2 = str2.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
+//        System.out.println(str1 + " : " + str2);
         if (str1 == null || str2 == null) {
-            return false;
+            throw new DataFormatException("There is no data");
         }
-        String[] arr = str1.trim().toLowerCase().split(" ");
+        String[] arr = translate(str1.trim()).toLowerCase().split(" ");
         if (arr.length == 0) {
-            return false;
+            throw new DataFormatException("There is no data in DB");
         }
         String a = arr[0];
         if (a.isEmpty()) {
-            return false;
+            throw new DataFormatException("There is no data in DB");
+        }
+        String b = translate(str2.trim()).toLowerCase();
+        return levinsteinListChecker(a, Arrays.asList(b.split(" ")));
+    }
+
+    static int digitChecker(String str1, String str2) throws DataFormatException {
+//        System.out.println(str1 + " : " + str2);
+
+        if (str1 == null || str2 == null) {
+            throw new DataFormatException("There is no data");
+        }
+        String[] arr = str1.trim().toLowerCase().split(" ");
+        if (arr.length == 0) {
+            throw new DataFormatException("There is no data in DB");
+        }
+        String a = arr[0];
+        if (a.isEmpty()) {
+            throw new DataFormatException("There is no data in DB");
         }
         String b = str2.trim().toLowerCase();
         if (b.isEmpty()) {
-            return false;
+            throw new DataFormatException("There is no data in input channel");
         }
-        return levinsteinListChecker(a, Arrays.asList(b.split(" ")), 0);
+        return levinsteinListChecker(a, Arrays.asList(b.split(" ")));
+    }
+
+    private static int levinsteinListChecker(String str, List<String> list) throws DataFormatException {
+        int distance = -1;
+        for (String entity : list) {
+            distance = levinsteinDistance(str.replace(" ", ""), entity.replace(" ", ""));
+//            System.out.println(str + "=" + entity + "; symbols action counter=" + distance);
+        }
+        if (distance == -1) {
+            throw new DataFormatException("levinsteinListChecker couldn't calculate distance");
+        }
+        return distance;
     }
 
     private static boolean levinsteinListChecker(String str, List<String> list, int minDistance) {
         for (String entity : list) {
             int distance = levinsteinDistance(str.replace(" ", ""), entity.replace(" ", ""));
             if (distance <= minDistance) {
-                System.out.println(str + "=" + entity + "; symbols action counter=" + distance);
+//                System.out.println(str + "=" + entity + "; symbols action counter=" + distance);
                 return true;
             }
         }
