@@ -17,9 +17,9 @@ import java.util.zip.DataFormatException;
  */
 public class PersonalInfoChecker {
 
-    public static int lexemeCompare(String str1, String str2) throws DataFormatException {
+    public static int getLevinsteinDist(String str1, String str2) throws DataFormatException {
         System.out.println(str1 + " : " + str2);
-        return NameCheck.lexemeCompare(str1, str2);
+        return NameCheck.getLevinsteinDist(str1, str2);
     }
 
     public static boolean lexemeCompare(String str1, String str2, int minDistance) {

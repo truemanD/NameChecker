@@ -20,19 +20,19 @@ public class TestClass {
             String str1 = "Иван0в#$#$%";
             String str2 = "Ив#$#$%анов";
             System.out.println("Distance 1; result:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2, 1));
-            System.out.println("distance:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2));
+            System.out.println("distance:" + namechecker.PersonalInfoChecker.getLevinsteinDist(str1, str2));
 
             System.out.println("\ntest2");
             str1 = "Иван0в#$#$%";
             str2 = "Ив#$#$%ановa";
             System.out.println("Distance 1; result:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2, 1));
-            System.out.println("distance:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2));
+            System.out.println("distance:" + namechecker.PersonalInfoChecker.getLevinsteinDist(str1, str2));
 
             System.out.println("\ntest3");
             str1 = "3#334 ";
             str2 = "зззч";
             System.out.println("Distance 0; result:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2, 0));
-            System.out.println("distance:" + namechecker.PersonalInfoChecker.lexemeCompare(str1, str2));
+            System.out.println("distance:" + namechecker.PersonalInfoChecker.getLevinsteinDist(str1, str2));
 
             System.out.println("\ntest4");
             str1 = "Иван0B иван иванович";

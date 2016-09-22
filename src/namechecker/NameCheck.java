@@ -41,7 +41,7 @@ class NameCheck {
         return levinsteinListChecker(a, Arrays.asList(b.split(" ")), minDistance);
     }
 
-    static int lexemeCompare(String str1, String str2) throws DataFormatException {
+    static int getLevinsteinDist(String str1, String str2) throws DataFormatException {
 //        System.out.println(str1 + " : " + str2);
         str1 = str1.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
         str2 = str2.replaceAll("[^A-Za-zА-Яа-я0-9]+", "");
