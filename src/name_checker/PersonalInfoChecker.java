@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package namechecker;
+package name_checker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +51,7 @@ public class PersonalInfoChecker {
         return result;
     }
 
-    public static boolean SerialNumberCheck(String str1, String str2) throws DataFormatException {
+    public static boolean serialNumberCheck(String str1, String str2) throws DataFormatException {
         System.out.println(str1 + " : " + str2);
         str1 = str1.replaceAll("[^0-9 ]+", "").trim();
         str2 = str2.replaceAll("[^0-9 ]+", "").trim();
