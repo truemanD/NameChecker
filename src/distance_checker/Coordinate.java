@@ -17,7 +17,7 @@ class Coordinate {
     Coordinate() {
     }
 
-    Coordinate(double LON, double LAT) {
+    Coordinate(double LAT, double LON) {
         this.LON = LON;
         this.LAT = LAT;
     }

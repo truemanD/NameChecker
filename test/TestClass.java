@@ -1,6 +1,5 @@
 
 import distance_checker.DistanceCalculator;
-import distance_checker.DistanceUnit;
 import java.util.zip.DataFormatException;
 import junit.framework.TestCase;
 import org.junit.Assert;
@@ -19,13 +18,28 @@ public class TestClass extends TestCase {
     String str1;
     String str2;
 
-    public void testGeoGetDistance() throws DataFormatException {
+    public void testGeoGetDistanceEquator() throws DataFormatException {
         System.out.println("\n" + this.getName());
         str1 = "0.0,0.0";
         str2 = "1.0,1.0";
-        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2, DistanceUnit.KILOMETERS) + " " + DistanceUnit.KILOMETERS);
-        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2, DistanceUnit.METERS) + " " + DistanceUnit.METERS);
-        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2, DistanceUnit.KILOMETERS), 157.2418158675294, 0);
+        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2));
+        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 157.2418158675294, 1);
+    }
+
+    public void testGeoGetDistanceNordPolus() throws DataFormatException {
+        System.out.println("\n" + this.getName());
+        str1 = "89.0,0.0";
+        str2 = "90.0,1.0";
+        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2));
+        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 2.7475230622975917, 1);
+    }
+
+    public void testGeoGetDistanceSouthPolus() throws DataFormatException {
+        System.out.println("\n" + this.getName());
+        str1 = "-89.0,0.0";
+        str2 = "-90.0,-1.0";
+        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2) );
+        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 2.7475230622975917, 1);
     }
 
     public void testGeoInRange() {
@@ -33,8 +47,8 @@ public class TestClass extends TestCase {
         str1 = "0.0,0.0";
         str2 = "1.0,1.0";
         int range = 158;
-        System.out.println("Distance between :" + str1 + " is in range " + range + " " + DistanceUnit.KILOMETERS + ": " + DistanceCalculator.inRange(str1, str2, range, DistanceUnit.KILOMETERS));
-        Assert.assertTrue(DistanceCalculator.inRange(str1, str2, range, DistanceUnit.KILOMETERS));
+        System.out.println("Distance between :" + str1 + " & " + str2 + " is in range " + range + ": " + DistanceCalculator.inRange(str1, str2, range));
+        Assert.assertTrue(DistanceCalculator.inRange(str1, str2, range));
     }
 
     public void testSimpleNameChecker1() throws DataFormatException {
