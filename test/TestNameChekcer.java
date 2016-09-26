@@ -13,43 +13,10 @@ import org.junit.Assert;
  *
  * @author diyanov-a
  */
-public class TestClass extends TestCase {
+public class TestNameChekcer extends TestCase {
 
     String str1;
     String str2;
-
-    public void testGeoGetDistanceEquator() throws DataFormatException {
-        System.out.println("\n" + this.getName());
-        str1 = "0.0,0.0";
-        str2 = "1.0,1.0";
-        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2));
-        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 157.2418158675294, 1);
-    }
-
-    public void testGeoGetDistanceNordPolus() throws DataFormatException {
-        System.out.println("\n" + this.getName());
-        str1 = "89.0,0.0";
-        str2 = "90.0,1.0";
-        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2));
-        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 2.7475230622975917, 1);
-    }
-
-    public void testGeoGetDistanceSouthPolus() throws DataFormatException {
-        System.out.println("\n" + this.getName());
-        str1 = "-89.0,0.0";
-        str2 = "-90.0,-1.0";
-        System.out.println("Distance between :" + str1 + ": " + DistanceCalculator.getDistance(str1, str2) );
-        Assert.assertEquals(DistanceCalculator.getDistance(str1, str2), 2.7475230622975917, 1);
-    }
-
-    public void testGeoInRange() {
-        System.out.println("\n" + this.getName());
-        str1 = "0.0,0.0";
-        str2 = "1.0,1.0";
-        int range = 158;
-        System.out.println("Distance between :" + str1 + " & " + str2 + " is in range " + range + ": " + DistanceCalculator.inRange(str1, str2, range));
-        Assert.assertTrue(DistanceCalculator.inRange(str1, str2, range));
-    }
 
     public void testSimpleNameChecker1() throws DataFormatException {
         System.out.println("\n" + this.getName());
