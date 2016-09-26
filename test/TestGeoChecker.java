@@ -80,13 +80,13 @@ public class TestGeoChecker extends TestCase {
             str1 = i + ".0,0.0";
             str2 = i - 1 + ".0,0.0";
             arr1[j] = distance_checker.DistanceCalculator.getDistance(str1, str2);
-            System.out.println("Distance between :" + str1 + " & " + str2 + ": " + arr1[j]);
+//            System.out.println("Distance between :" + str1 + " & " + str2 + ": " + arr1[j]);
         }
         for (int i = -90, j = 0; i < 0; i++, j++) {
             str1 = i + ".0,0.0";
             str2 = i + 1 + ".0,0.0";
             arr2[j] = distance_checker.DistanceCalculator.getDistance(str1, str2);
-            System.out.println("Distance between :" + str1 + " & " + str2 + ": " + arr2[j]);
+//            System.out.println("Distance between :" + str1 + " & " + str2 + ": " + arr2[j]);
         }
         Assert.assertArrayEquals(arr1, arr2, 0);
     }
@@ -148,6 +148,28 @@ public class TestGeoChecker extends TestCase {
             str2 = "-1.0," + (i + 1) + ".0";
             arr2[j] = distance_checker.DistanceCalculator.getDistance(str1, str2);
 //            System.out.println("Distance between :" + str1 + " & " + str2 + ": " + arr2[j]);
+        }
+        Assert.assertArrayEquals(arr1, arr2, 0);
+    }
+
+    // double value
+    public void testLoopGeoNSDouble() {
+        System.out.println("\n" + this.getName());
+        double[] arr1 = new double[324000];
+        double[] arr2 = new double[324000];
+        double k = 0;
+        for (int i = 0; i < 324000; i++) {
+            str1 = k / 3600 + ",0.0";
+            str2 = k / 3600 + 1 + ",0.0";
+            arr1[i] = distance_checker.DistanceCalculator.getDistance(str1, str2);
+            k++;
+        }
+        k = 0;
+        for (int i = 0, j = 0; i > -324000; i--, j++) {
+            str1 = k / 3600 + ",0.0";
+            str2 = -k / 3600 - 1 + ",0.0";
+            arr2[j] = distance_checker.DistanceCalculator.getDistance(str1, str2);
+            k++;
         }
         Assert.assertArrayEquals(arr1, arr2, 0);
     }
